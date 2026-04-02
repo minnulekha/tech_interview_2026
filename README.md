@@ -36,6 +36,7 @@ Contact Form
 
 ### Waitlist & Debug Rush Game
 Registration and Game
+
 <img width="1355" height="588" alt="image" src="https://github.com/user-attachments/assets/f5169f31-dd75-4397-b1f5-9b85127c1746" />
 
 
