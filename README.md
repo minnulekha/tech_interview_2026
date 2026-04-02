@@ -19,18 +19,22 @@ As part of the Tech Team Challenge, this repository has been successfully enhanc
 ## 📸 Visual Showcase
 
 ### Homepage & Dark Theme
-![Homepage Dashboard](<img width="1342" height="595" alt="image" src="https://github.com/user-attachments/assets/ed858cd0-e63f-4d88-9f8a-c74262b9e390" />
+Homepage Dashboard
+<img width="1342" height="595" alt="image" src="https://github.com/user-attachments/assets/ed858cd0-e63f-4d88-9f8a-c74262b9e390" />
 )
 
 ### Events & Contact Drawers
-![Events Menu](<img width="1077" height="586" alt="image" src="https://github.com/user-attachments/assets/ab5b8c91-4e93-4fa3-b519-605c80ab9b5b" />
-)
-![Contact Form](<img width="1079" height="588" alt="image" src="https://github.com/user-attachments/assets/a60153e4-a12d-4451-b69c-e313aa7781fe" />
-)
+Events Menu
+<img width="1077" height="586" alt="image" src="https://github.com/user-attachments/assets/ab5b8c91-4e93-4fa3-b519-605c80ab9b5b" />
+
+Contact Form
+<img width="1079" height="588" alt="image" src="https://github.com/user-attachments/assets/a60153e4-a12d-4451-b69c-e313aa7781fe" />
+
 
 ### Waitlist & Debug Rush Game
-![Registration and Game](<img width="1355" height="588" alt="image" src="https://github.com/user-attachments/assets/f5169f31-dd75-4397-b1f5-9b85127c1746" />
-)
+Registration and Game
+<img width="1355" height="588" alt="image" src="https://github.com/user-attachments/assets/f5169f31-dd75-4397-b1f5-9b85127c1746" />
+
 
 ---
 
