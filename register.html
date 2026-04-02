@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOSS Club | Registrations</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- NEW LAYOUT & GAME STYLES --- */
+        :root {
+            --neon-green: #00ff66;
+            --neon-blue: #00e5ff;
+            --neon-yellow: #ffbd2e;
+            --neon-red: #ff3366;
+            --term-bg: #0d1117;
+            --term-border: #30363d;
+        }
+
+        /* Two Column Layout */
+        .split-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            align-items: center;
+        }
+
+        .left-col, .right-col {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        /* Left Column Adjustments */
+        .wait-text {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .left-col .premium-form {
+            margin-bottom: 20px;
+        }
+
+        /* Right Column - Game UI */
+        .game-heading {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .terminal {
+            background: var(--term-bg);
+            border: 1px solid var(--term-border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.05);
+            font-family: 'Fira Code', monospace;
+            color: #c9d1d9;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .terminal:hover {
+            box-shadow: 0 10px 40px rgba(0, 255, 102, 0.15);
+        }
+
+        .terminal-header {
+            background: #161b22;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--term-border);
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .term-title {
+            margin: 0 auto;
+            font-size: 0.85rem;
+            color: #8b949e;
+            letter-spacing: 1px;
+        }
+
+        .terminal-body {
+            padding: 25px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .sys-msg {
+            color: var(--neon-green);
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(0, 255, 102, 0.3);
+            line-height: 1.5;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .lang-btn {
+            background: #010409;
+            color: #8b949e;
+            border: 1px solid var(--term-border);
+            padding: 6px 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            border-color: #8b949e;
+        }
+
+        .lang-btn.active[data-lang="js"] {
+            color: var(--neon-yellow);
+            border-color: var(--neon-yellow);
+            box-shadow: 0 0 10px rgba(255, 189, 46, 0.2);
+        }
+
+        .lang-btn.active[data-lang="python"] {
+            color: var(--neon-blue);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+
+        .terminal-btn {
+            background: transparent;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 10px 20px;
+            font-family: 'Fira Code', monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            align-self: flex-start;
+        }
+
+        .terminal-btn:hover {
+            background: rgba(0, 255, 102, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+        }
+
+        /* Active Game Styles */
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: #8b949e;
+        }
+
+        .timer { color: var(--neon-red); }
+        .score { color: var(--neon-green); }
+
+        .code-snippet {
+            background: #010409;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+            border: 1px solid #30363d;
+            line-height: 1.4;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .prompt-arrow {
+            color: var(--neon-green);
+            font-weight: 500;
+            width: 35px; /* Keeps input aligned when prefix changes */
+        }
+
+        .term-input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            flex: 1;
+            outline: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .term-input:focus {
+            border-bottom: 1px solid var(--neon-green);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .crash-text {
+            color: var(--neon-red);
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .split-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .left-col {
+                text-align: center;
+            }
+            .waitlist-row {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">FOSS CLUB</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-item">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="register-wrapper">
+        <div class="split-container">
+            
+            <div class="left-col register-card">
+                <h1 class="premium-title" style="font-size: 4rem;">STAY <span class="italic">TUNED</span></h1>
+                <p class="subtitle" style="margin-bottom: 10px; font-size: 1.1rem;">Registrations are currently closed.</p>
+                <p class="wait-text">Good things take time. Something exciting is cooking 👀</p>
+
+                <form action="https://formspree.io/f/maqlblrb" method="POST" class="premium-form waitlist-form">
+                    <div class="waitlist-row">
+                        <input type="email" name="waitlist_email" placeholder="Enter your email to get notified..." required>
+                        <button type="submit" class="btn-submit">NOTIFY ME</button>
+                    </div>
+                </form>
+
+                <a href="index.html" class="back-link">Return to Homepage</a>
+            </div>
+
+            <div class="right-col">
+                <h3 class="game-heading">While you wait... test your skills 👇</h3>
+                
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="term-title">DEBUG_RUSH_v2.0</span>
+                    </div>
+
+                    <div class="terminal-body">
+                        <div id="screen-start">
+                            <p class="sys-msg">> System initialized.<br>> Select runtime environment:</p>
+                            
+                            <div class="lang-selector">
+                                <button class="lang-btn active" data-lang="js">JavaScript</button>
+                                <button class="lang-btn" data-lang="python">Python</button>
+                            </div>
+
+                            <button class="terminal-btn" onclick="startGame()">START_DEBUGGING()</button>
+                        </div>
+
+                        <div id="screen-game" class="hidden">
+                            <div class="stats-bar">
+                                <span>SCORE: <span class="score" id="score-display">0</span></span>
+                                <span>TIME: <span class="timer" id="time-display">10.0</span>s</span>
+                            </div>
+                            <div class="code-snippet" id="code-display"></div>
+                            <div class="input-group">
+                                <span class="prompt-arrow" id="prompt-symbol">~/$</span>
+                                <input type="text" class="term-input" id="bug-input" placeholder="type the fix..." autocomplete="off" spellcheck="false">
+                            </div>
+                        </div>
+
+                        <div id="screen-end" class="hidden">
+                            <h2 class="crash-text" id="end-title">SYSTEM CRASHED</h2>
+                            <p style="margin-bottom: 20px;">Final Score: <span class="score" id="final-score">0</span></p>
+                            <button class="terminal-btn" onclick="resetToStart()">REBOOT_SYSTEM()</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        const bugDatabase = {
+            js: [
+                { code: "console.log('Hello World' \n// Missing character at the end?", answers: [")", ");"] },
+                { code: "let arr = [1, 2, 3];\nconsole.log(arr.lenght);\n// Typo in property?", answers: ["length"] },
+                { code: "for (let i = 0 i < 10; i++) {\n// Missing character after 0?", answers: [";"] },
+                { code: "const doc = document.getElementByID('app');\n// Fix the capitalization typo", answers: ["getElementById", "Id"] },
+                { code: "function add(a, b) {\n  return a + b\n// Missing closing bracket?", answers: ["}"] },
+                { code: "let x = '5' + 5;\n// What does x evaluate to?", answers: ["55", "'55'", "\"55\""] },
+                { code: "if (x = 10) { \n// Should be comparison, not assignment", answers: ["==", "==="] },
+                { code: "while (true) \n// This causes an infinite...", answers: ["loop"] }
+            ],
+            python: [
+                { code: "print('Hello World' \n# Missing character at the end?", answers: [")"] },
+                { code: "def add(a, b)\n    return a + b\n# Missing syntax after parameters?", answers: [":"] },
+                { code: "my_list = [1, 2, 3]\nmy_list.push(4)\n# Incorrect method to add to list?", answers: ["append"] },
+                { code: "if x = 10:\n    print('ten')\n# Assignment instead of comparison?", answers: ["=="] },
+                { code: "for i in range(10)\n    print(i)\n# Missing character?", answers: [":"] },
+                { code: "import Math\n# Fix the capitalization typo", answers: ["math"] },
+                { code: "print(len(12345))\n# Trying to get length of an integer raises a...", answers: ["TypeError", "error"] },
+                { code: "while True \n# Missing syntax?", answers: [":"] }
+            ]
+        };
+
+        let currentLang = 'js';
+        let currentBugIndex = 0;
+        let score = 0;
+        let timeLeft = 10.0;
+        let timerInterval;
+
+        const screens = {
+            start: document.getElementById('screen-start'),
+            game: document.getElementById('screen-game'),
+            end: document.getElementById('screen-end')
+        };
+
+        const ui = {
+            code: document.getElementById('code-display'),
+            input: document.getElementById('bug-input'),
+            score: document.getElementById('score-display'),
+            time: document.getElementById('time-display'),
+            endTitle: document.getElementById('end-title'),
+            finalScore: document.getElementById('final-score'),
+            promptSymbol: document.getElementById('prompt-symbol')
+        };
+
+        // Language Selection Logic
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentLang = e.target.getAttribute('data-lang');
+            });
+        });
+
+        function switchScreen(screenName) {
+            Object.values(screens).forEach(s => s.classList.add('hidden'));
+            screens[screenName].classList.remove('hidden');
+        }
+
+        function startGame() {
+            score = 0;
+            ui.score.innerText = score;
+            
+            // Set terminal prefix based on language
+            ui.promptSymbol.innerText = currentLang === 'js' ? '~/$' : '>>>';
+            ui.promptSymbol.style.color = currentLang === 'js' ? 'var(--neon-yellow)' : 'var(--neon-blue)';
+            ui.input.style.borderBottomColor = 'transparent';
+
+            switchScreen('game');
+            ui.input.value = '';
+            ui.input.focus();
+            loadRandomBug();
+        }
+
+        function loadRandomBug() {
+            clearInterval(timerInterval);
+            timeLeft = 10.0;
+            ui.time.innerText = timeLeft.toFixed(1);
+            ui.time.style.color = "var(--neon-red)";
+            
+            // Pick random bug from selected language pool
+            const activeBugs = bugDatabase[currentLang];
+            currentBugIndex = Math.floor(Math.random() * activeBugs.length);
+            ui.code.innerText = activeBugs[currentBugIndex].code;
+            ui.input.value = '';
+
+            timerInterval = setInterval(() => {
+                timeLeft -= 0.1;
+                if (timeLeft <= 0) {
+                    timeLeft = 0;
+                    endGame("TIME OUT");
+                }
+                ui.time.innerText = timeLeft.toFixed(1);
+            }, 100);
+        }
+
+        function checkAnswer(e) {
+            if (e.key === 'Enter') {
+                const userAnswer = ui.input.value.trim().toLowerCase();
+                const activeBugs = bugDatabase[currentLang];
+                const correctAnswers = activeBugs[currentBugIndex].answers.map(a => a.toLowerCase());
+
+                if (correctAnswers.includes(userAnswer)) {
+                    // Correct!
+                    let speedBonus = Math.floor(timeLeft);
+                    score += (10 + speedBonus);
+                    ui.score.innerText = score;
+                    
+                    // Flash effect
+                    const glowColor = currentLang === 'js' ? 'rgba(255, 189, 46, 0.2)' : 'rgba(0, 229, 255, 0.2)';
+                    ui.input.style.backgroundColor = glowColor;
+                    setTimeout(() => ui.input.style.backgroundColor = "transparent", 200);
+
+                    loadRandomBug();
+                } else {
+                    // Wrong!
+                    endGame("DEBUG FAILED");
+                }
+            }
+        }
+
+        function endGame(reason) {
+            clearInterval(timerInterval);
+            switchScreen('end');
+            ui.endTitle.innerText = reason;
+            ui.endTitle.style.color = reason === "TIME OUT" ? "var(--neon-yellow)" : "var(--neon-red)";
+            ui.finalScore.innerText = score;
+        }
+
+        function resetToStart() {
+            switchScreen('start');
+        }
+
+        // Event Listeners
+        ui.input.addEventListener('keypress', checkAnswer);
+
+        // Auto focus input when clicking game area
+        screens.game.addEventListener('click', () => {
+            // Slight delay ensures the click doesn't interfere with focus state
+            setTimeout(() => ui.input.focus(), 10);
+        });
+
+    </script>
+</body>
+</html>

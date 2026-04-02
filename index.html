@@ -1,31 +1,302 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FOSS Club Events</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOSS Club | Tech Sensation</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header>
-    <h1>FOSS Club</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Events</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="#" >FOSS CLUB</a>
+            </div>
+            <nav class="nav-links">
+                <a href="javascript:void(0)" onclick="openAboutDrawer()"class="nav-item">About</a>
+                <a href="javascript:void(0)" onclick="openDrawer()" class="nav-item">Events</a>
+                <a href="javascript:void(0)" onclick="openContactDrawer()" class="nav-item">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-    <h2>Upcoming Events</h2>
+    <section class="hero-bento-wrapper">
+        <main class="bento-grid">
+            
+            <div class="card hero-main">
+                <div class="hero-content">
+                    <h1 class="hero-title">FOSS <br><span class="italic">SENSATION</span></h1>
+                    <button class="btn-primary" onclick="openDrawer()">EXPLORE EVENTS</button>
+                </div>
+            </div>
 
+            <div class="bento-sidebar">
+                <div class="card side-card events-trigger" onclick="openDrawer()">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800" alt="Events">
+                    <div class="card-label">EVENTS <span class="arrow">→</span></div>
+                </div>
+                
+                <div class="card side-card about-trigger" onclick="openAboutDrawer()">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800" alt="About">
+                    <div class="card-label">ABOUT US <span class="arrow">→</span></div>
+                </div>
 
-      <div class="card">
-        <h3>GIT HUB Basics</h3>
-        <p class="date">April 10, 2026</p>
-        <p>Learn basics of GIT HUB</p>
-        <button>Register</button>
-      </div>
+                <div class="card side-card contact-trigger" onclick="openContactDrawer()">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800" alt="Contact">
+                    <div class="card-label">CONTACT <span class="arrow">→</span></div>
+                </div>
+            </div>
 
+        </main>
+    </section>
+
+    <div id="contact-drawer" class="drawer-overlay">
+        <div class="drawer-panel contact-panel">
+            
+            <div class="drawer-visual contact-visual" style="background-image: url('image/ContactUs.png');">
+                <div class="visual-text">CONTACT</div>
+            </div>
+
+<div class="drawer-content contact-content">
+                <div class="drawer-header contact-header-section">
+                    <span class="close-icon" onclick="closeContactDrawer()">&times;</span>
+                    <div class="drawer-title contact-title">
+                        <h2 class="premium-title">CONTACT US</h2>
+                        <p class="subtitle">Join the open source revolution.</p>
+                    </div>
+                </div>
+                
+                <form action="https://formspree.io/f/maqlblrb" method="POST" class="premium-form">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    
+                    <button type="submit" class="btn-submit">SEND MESSAGE</button>
+                    <p class="form-microcopy">We typically respond within 24 hours.</p>
+                </form> 
+
+                <div class="contact-extras">
+                    <div class="extra-block">
+                        <h3>Direct Reach</h3>
+                        <p><a href="mailto:fossclub.lbt@gmail.com">fossclub.lbt@gmail.com</a></p>
+                        <p>LBSITW Campus, Kerala</p>
+                    </div>
+                    
+                    <div class="extra-block">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="https://github.com/FOSSCLUB-LBSITW" target="_blank">GitHub ↗</a>
+                            <a href="https://www.linkedin.com/company/foss-club-lbsitw/posts/?feedView=all" target="_blank">LinkedIn ↗</a>
+                            <a href="https://www.instagram.com/foss_club_lbsitw/" target="_blank">Instagram ↗</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <div id="event-drawer" class="drawer-overlay">
+        <div class="drawer-panel">
+            <div class="drawer-visual" style="background-image: url('image/Events.png');">
+                <div class="visual-text">EVENTS</div>
+            </div>
+            <div class="drawer-content">
+                <div class="drawer-top">
+                    <span class="close-icon" onclick="closeDrawer()">&times;</span>
+                    <div class="filter-controls">
+                        <button class="filter-btn active" data-filter="all">ALL</button>
+                        <button class="filter-btn" data-filter="workshop">WORKSHOPS</button>
+                        <button class="filter-btn" data-filter="networking">NETWORKING</button>
+                    </div>
+                </div>
+
+                <h2 class="drawer-heading">UPCOMING EVENTS</h2>
+
+                <div id="event-list" class="event-menu-list">
+                    <div class="event-card" data-category="workshop" onclick="location.href='register.html'">
+                        <img src="image/python.jpg" alt="Python" class="event-avatar">
+                        <div class="item-meta">
+                            <h3>PYTHON MASTERCLASS <span class="dot-line"></span> <span class="price">FREE</span></h3>
+                            <p>APR 10 — Advanced Django Logic.</p>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </div>
+
+                    <div class="event-card" data-category="workshop" onclick="location.href='register.html'">
+                        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=200" alt="React" class="event-avatar">
+                        <div class="item-meta">
+                            <h3>REACT FOUNDATIONS <span class="dot-line"></span> <span class="price">FREE</span></h3>
+                            <p>APR 15 — Modern UI & State management.</p>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </div>
+
+                    <div class="event-card" data-category="workshop" onclick="location.href='register.html'">
+                        <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=200" alt="Git Flow" class="event-avatar">
+                        <div class="item-meta">
+                            <h3>GIT FLOW & COLLABORATION <span class="dot-line"></span> <span class="price">FREE</span></h3>
+                            <p>APR 22 — Branching & merging.</p>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </div>
+
+                    <div class="event-card" data-category="networking" onclick="location.href='register.html'">
+                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=200" alt="Networking" class="event-avatar">
+                        <div class="item-meta">
+                            <h3>FOSS NETWORKING NIGHT <span class="dot-line"></span> <span class="price">FREE</span></h3>
+                            <p>MAY 05 — Open source community discussion.</p>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about-drawer" class="drawer-overlay">
+        <div class="drawer-panel">
+            
+            <div class="drawer-visual" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800');">
+                <div class="visual-text">ABOUT</div>
+            </div>
+
+            <div class="drawer-content about-content-area">
+                <div class="drawer-top">
+                    <span class="close-icon" onclick="closeAboutDrawer()">&times;</span>
+                </div>
+
+                <h2 class="drawer-heading">OUR VISION</h2>
+
+                <div class="about-section">
+                    <h3 class="about-subheading">What is FOSS?</h3>
+                    <p class="about-text">Free and open-source software (FOSS) is software that is available for anyone to use, modify, and share without restrictions. "Free" refers to freedom, not necessarily price—meaning users have the liberty to access the source code and adapt it. This approach fosters transparency, community-driven development, and the creation of software that benefits everyone.</p>
+                </div>
+
+                <div class="about-section">
+                    <h3 class="about-subheading">Our Objectives</h3>
+                    <div class="objectives-grid">
+                        <div class="obj-box">
+                            <span class="obj-num">01</span>
+                            <p>Empower students to contribute to the global FOSS community.</p>
+                        </div>
+                        <div class="obj-box">
+                            <span class="obj-num">02</span>
+                            <p>Host workshops and collaborative coding sessions.</p>
+                        </div>
+                        <div class="obj-box">
+                            <span class="obj-num">03</span>
+                            <p>Advocate for open-source adoption at the university level.</p>
+                        </div>
+                        <div class="obj-box">
+                            <span class="obj-num">04</span>
+                            <p>Facilitate student participation to enhance career prospects.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h3 class="about-subheading">FOSS vs Proprietary</h3>
+                    <ul class="comparison-list">
+                        <li><strong>Transparency:</strong> Open source allows for auditing; proprietary code is hidden.</li>
+                        <li><strong>Flexibility:</strong> Modify software to specific needs vs limited vendor features.</li>
+                        <li><strong>Collaboration:</strong> Global community innovation vs single-company control.</li>
+                        <li><strong>Cost:</strong> Typically free to use, avoiding heavy licensing fees.</li>
+                        <li><strong>Independence:</strong> Avoid vendor lock-in and control your own software longevity.</li>
+                    </ul>
+                </div>
+
+                <div class="about-section">
+                    <h3 class="about-subheading">FOSS for the People</h3>
+                    <p class="about-text">FOSS empowers individuals, schools, and small businesses to embrace technology without high costs, fostering digital literacy and equal opportunities for all.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <footer class="main-footer">
+        <p>&copy; 2026 FOSS Club - Built for Tech Team Challenge</p>
+    </footer>
+
+    <script>
+        // FUNCTIONS FOR EVENTS DRAWER
+        function openDrawer() {
+            const drawer = document.getElementById('event-drawer');
+            drawer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            const drawer = document.getElementById('event-drawer');
+            drawer.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // FUNCTIONS FOR CONTACT DRAWER (NEW/UPDATED)
+        function openContactDrawer() {
+            const drawer = document.getElementById('contact-drawer');
+            drawer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactDrawer() {
+            const drawer = document.getElementById('contact-drawer');
+            drawer.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // FUNCTIONS FOR ABOUT DRAWER
+        function openAboutDrawer() {
+            document.getElementById('about-drawer').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeAboutDrawer() {
+            document.getElementById('about-drawer').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Logic to close drawer when clicking on overlay
+        window.onclick = function(event) {
+            const eventDrawer = document.getElementById('event-drawer');
+            const contactDrawer = document.getElementById('contact-drawer');
+            const aboutDrawer = document.getElementById('about-drawer');
+            if (event.target === eventDrawer) {
+                closeDrawer();
+            } else if (event.target === contactDrawer) {
+                closeContactDrawer();
+            } else if (event.target === aboutDrawer) {
+                closeAboutDrawer();
+            }
+        }
+
+        // SCRIPT FOR DRAWER FILTERING
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const eventCards = document.querySelectorAll('.event-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and add to clicked button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.dataset.filter;
+
+                // Loop through event cards and show/hide based on data-category
+                eventCards.forEach(card => {
+                    const category = card.dataset.category;
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'flex'; // Restore visibility
+                    } else {
+                        card.style.display = 'none'; // Hide non-matching cards
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
