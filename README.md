@@ -20,14 +20,17 @@ As part of the Tech Team Challenge, this repository has been successfully enhanc
 
 ### Homepage & Dark Theme
 Homepage Dashboard
+
 <img width="1342" height="595" alt="image" src="https://github.com/user-attachments/assets/ed858cd0-e63f-4d88-9f8a-c74262b9e390" />
-)
+
 
 ### Events & Contact Drawers
 Events Menu
+
 <img width="1077" height="586" alt="image" src="https://github.com/user-attachments/assets/ab5b8c91-4e93-4fa3-b519-605c80ab9b5b" />
 
 Contact Form
+
 <img width="1079" height="588" alt="image" src="https://github.com/user-attachments/assets/a60153e4-a12d-4451-b69c-e313aa7781fe" />
 
 
@@ -93,5 +96,5 @@ git push origin main
 * Go to your forked repository on GitHub.
 * Click on **Compare & pull request**.
 * Add a clear title and description of your changes, then submit the Pull Request for review.
-```
+
 
