@@ -1,5 +1,5 @@
 # FOSS Club Website - Tech Team Challenge
-
+🏆 **Status: Officially selected for the FOSS Club LBSITW Execom '26 Tech Team!** 🎉
 Submitted by **Minnu Lekha V G** (BTech S4 IT)  
 GitHub Profile: [@minnulekha](https://github.com/minnulekha)
 
